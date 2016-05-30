@@ -1,0 +1,29 @@
+{
+  "name": "angularlogin",
+  "version": "1.0.0",
+  "description": "angular login app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hahuutin/angular-login.git"
+  },
+  "keywords": [
+    "angular"
+  ],
+  "author": "Ha Huu Tin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hahuutin/angular-login/issues"
+  },
+  "homepage": "https://github.com/hahuutin/angular-login#readme",
+  "dependencies": {
+    "angular": "^1.5.5",
+    "angular-ladda": "^0.3.3",
+    "bootstrap": "^3.3.6",
+    "jquery": "^2.2.4",
+    "ladda": "^1.0.0"
+  }
+}
