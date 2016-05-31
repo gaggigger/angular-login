@@ -1,0 +1,34 @@
+<div class="container" data-ng-controller="LoginController">
+    <div class="card card-container">
+        <img id="profile-img" class="profile-img-card" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+        <form class="form-signin" name="formLogin" novalidate ng-submit="checkLogin(formLogin.$valid)">
+
+            <p class="text-danger text-center" ng-if="messageError"><strong>{{messageError}}</strong></p>
+            <p class="text-success text-center" ng-if="messageSuccess"><strong>{{messageSuccess}}</strong></p>
+
+            <div class="form-group" ng-class="{'has-error': formLogin.inputUsername.$invalid && (!formLogin.inputUsername.$pristine || submitted)}">
+                <input class="form-control" type="text" id="inputUsername" name="inputUsername" placeholder="Username" required autofocus
+                    data-ng-model="username">
+
+                <p class="text-danger" ng-if="formLogin.inputUsername.$invalid && (!formLogin.inputUsername.$pristine || submitted)">Username cannot empty</p>
+            </div>
+
+            <div class="form-group" ng-class="{'has-error': formLogin.inputPassword.$invalid && (!formLogin.inputPassword.$pristine || submitted)}">
+                <input class="form-control" type="password" id="inputPassword" name="inputPassword" placeholder="Password" required
+                    data-ng-model="password">
+
+                <p class="text-danger" ng-if="formLogin.inputPassword.$invalid && (!formLogin.inputPassword.$pristine || submitted)">Password cannot empty</p>
+            </div>
+
+            <div id="remember" class="checkbox">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+
+            <button class="btn btn-primary btn-block btn-signin" type="submit" ladda="loginLoading">Sign in</button>
+        </form>
+
+        <a href="#" class="forgot-password">Forgot the password?</a>
+    </div>
+</div>

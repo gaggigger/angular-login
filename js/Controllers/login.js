@@ -2,15 +2,7 @@
     'use strict';
 
     angular
-        .module('login-app', ['angular-ladda'])
-        .config(function (laddaProvider) {
-            laddaProvider.setOption({
-                /* optional */
-                style: 'zoom-out',
-                spinnerSize: 35,
-                spinnerColor: '#ffffff'
-            });
-        })
+        .module('login-app')
         .controller('LoginController', LoginController);
 
     LoginController.$inject = ['$scope', '$http'];
@@ -43,9 +35,6 @@
                     $scope.messageError = "Username or password is invalid";
                 }
                 $scope.loginLoading = false;
-                $scope.users = {};
-                $scope.formLogin.$setPristine();
-                $scope.formLogin.$setUntouched();
             }
         }
     }
