@@ -1,4 +1,10 @@
-(function(angular) {
+(function() {
+    /**
+     * @name Router
+     * @desc This function using to transitions between those application states
+     * @param $stateProvider, $urlRouterProvider
+     */
+
     'use strict';
 
     angular
@@ -11,12 +17,13 @@
         $stateProvider
             .state('login', {
                 url: '/login',
-                templateUrl: 'templates/login.html'
+                templateUrl: 'templates/login.html',
+                controller: 'LoginController as LoginCtrl'
             })
             .state('home', {
                 url: '/home',
-                'templateUrl': 'templates/home.html'
+                templateUrl: 'templates/home.html'
             });
     }
 
-})(window.angular);
+})();

@@ -1,4 +1,10 @@
-(function(angular) {
+(function() {
+    /**
+     * @name Setting Module
+     * @desc This function using to setting module and dependency
+     * @param
+     */
+
     'use strict';
 
     angular
@@ -14,4 +20,4 @@
                 spinnerColor: '#ffffff'
             });
         });
-})(window.angular);
+})();
