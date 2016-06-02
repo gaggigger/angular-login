@@ -11,20 +11,22 @@
         .module('login-app')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$http'];
+    LoginController.$inject = ['$http', 'loginService'];
 
-    function LoginController($http) {
+    function LoginController($http, loginService) {
         var self = this;
         self.checkLogin = checkLogin;
         self.users = [];
 
-        $http({
+        // TODO: Defer Controller Logic to Services
+        var requestParams = {
             method: 'GET',
             url: 'http://localhost:3000/users'
-        }).success(function(data) {
+        }
+        $http(requestParams).success(function(data) {
             self.users = data;
         }).error(function(data, status, headers, config) {
-            console.log("Cannot access data user");
+            self.messageError = "Cannot access data user";
         });
 
         function checkLogin(isValid) {
@@ -33,6 +35,7 @@
             if (isValid) {
                 if (self.users['username'] == self.username && self.users['password'] == self.password) {
                     self.messageSuccess = "Congratulation! You logged in successful";
+                    console.log(loginService.getUser());
                 } else {
                     self.messageError = "Username or password is invalid";
                 }
@@ -40,5 +43,4 @@
             }
         }
     }
-
 })();

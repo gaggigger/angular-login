@@ -1,7 +1,7 @@
 (function() {
     /**
      * @name Setting Module
-     * @desc This function using to setting module and dependency
+     * @desc This function using to setter module and dependency
      * @param
      */
 

@@ -12,15 +12,15 @@
         .service('loginService', loginService);
 
     loginService.$inject = ['$http'];
-    function loginService($http) {
-        // $http({
-        //     method: 'GET',
-        //     url: 'http://localhost:3000/users'
-        // }).success(function(data) {
-        //     self.users = data;
-        // }).error(function(data, status, headers, config) {
-        //     console.log("Cannot access data user");
-        // });
-    }
 
+    function loginService($http) {
+        var self = this;
+        self.getUser = getUser;
+
+        function getUser() {
+            return "Hello World";
+        }
+
+        // TODO: Using defer,promise
+    }
 })();
