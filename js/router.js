@@ -18,12 +18,20 @@
             .state('login', {
                 url: '/login',
                 templateUrl: 'templates/login.html',
-                controller: 'LoginController as LoginCtrl'
+                controller: 'LoginController',
+                controllerAs: 'LoginCtrl'
             })
             .state('home', {
                 url: '/home',
-                templateUrl: 'templates/home.html'
+                resolve: {
+                    "abc": function($location, $rootScope) {
+                        if (!$rootScope.Auth) {
+                            $location.path('/login');
+                        } else {
+                            templateUrl: 'templates/home.html'
+                        }
+                    }
+                }
             });
     }
-
 })();

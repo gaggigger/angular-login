@@ -14,7 +14,6 @@
         ])
         .config(function (laddaProvider) {
             laddaProvider.setOption({
-                /* optional */
                 style: 'zoom-out',
                 spinnerSize: 35,
                 spinnerColor: '#ffffff'

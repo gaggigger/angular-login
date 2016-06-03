@@ -11,35 +11,29 @@
         .module('login-app')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$http', 'loginService'];
+    LoginController.$inject = ['$http', '$location', 'loginService', '$rootScope'];
 
-    function LoginController($http, loginService) {
+    function LoginController($http, $location, loginService, $rootScope) {
         var self = this;
         self.checkLogin = checkLogin;
         self.users = [];
-
-        // TODO: Defer Controller Logic to Services
-        var requestParams = {
-            method: 'GET',
-            url: 'http://localhost:3000/users'
-        }
-        $http(requestParams).success(function(data) {
-            self.users = data;
-        }).error(function(data, status, headers, config) {
-            self.messageError = "Cannot access data user";
-        });
 
         function checkLogin(isValid) {
             self.loginLoading = true;
             self.submitted = true;
             if (isValid) {
-                if (self.users['username'] == self.username && self.users['password'] == self.password) {
-                    self.messageSuccess = "Congratulation! You logged in successful";
-                    console.log(loginService.getUser());
-                } else {
-                    self.messageError = "Username or password is invalid";
-                }
-                self.loginLoading = false;
+                loginService.getUser().then(function(response) {
+                    if (response.username == self.username && response.password == self.password) {
+                        console.log("Congratulation! You logged in successful");
+                        $rootScope.Auth = true;
+                        $location.path('/home');
+                    } else {
+                        self.messageError = "Username or password is invalid";
+                    }
+                    self.loginLoading = false;
+                }, function(error) {
+                    console.log("Request API failed");
+                });
             }
         }
     }
