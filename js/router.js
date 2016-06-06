@@ -23,15 +23,7 @@
             })
             .state('home', {
                 url: '/home',
-                resolve: {
-                    "abc": function($location, $rootScope) {
-                        if (!$rootScope.Auth) {
-                            $location.path('/login');
-                        } else {
-                            templateUrl: 'templates/home.html'
-                        }
-                    }
-                }
+                templateUrl: 'templates/home.html'
             });
     }
 })();

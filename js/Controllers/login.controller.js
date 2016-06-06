@@ -23,7 +23,7 @@
             self.submitted = true;
             if (isValid) {
                 loginService.getUser().then(function(response) {
-                    if (response.username == self.username && response.password == self.password) {
+                    if (self.username == response.username && self.password == response.password) {
                         console.log("Congratulation! You logged in successful");
                         $rootScope.Auth = true;
                         $location.path('/home');
