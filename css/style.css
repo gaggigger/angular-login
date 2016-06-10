@@ -141,3 +141,26 @@ body, html {
 .forgot-password:focus{
     color: rgb(12, 97, 33);
 }
+
+.homepage {
+    padding-top: 60px;
+}
+.homepage h1 {
+    font-size: 60px;
+    color: #FFF;
+    text-align: center;
+}
+
+.form-addon {
+    position: relative;
+}
+.form-addon .addon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    padding: 15px;
+}
+.form-addon .addon:hover {
+    cursor: pointer;
+}

@@ -1,4 +1,4 @@
-(function() {
+;(function() {
     /**
      * @name Login Controller
      * @desc This function using to control login page for login app
@@ -11,35 +11,42 @@
         .module('login-app')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$http', 'loginService'];
+    LoginController.$inject = ['$http', '$location', 'loginService', '$rootScope'];
 
-    function LoginController($http, loginService) {
+    function LoginController($http, $location, loginService, $rootScope) {
         var self = this;
         self.checkLogin = checkLogin;
+        self.displayPassword = displayPassword;
         self.users = [];
-
-        // TODO: Defer Controller Logic to Services
-        var requestParams = {
-            method: 'GET',
-            url: 'http://localhost:3000/users'
-        }
-        $http(requestParams).success(function(data) {
-            self.users = data;
-        }).error(function(data, status, headers, config) {
-            self.messageError = "Cannot access data user";
-        });
+        self.typeInput = 'password';
+        self.isPassword = true;
 
         function checkLogin(isValid) {
             self.loginLoading = true;
             self.submitted = true;
             if (isValid) {
-                if (self.users['username'] == self.username && self.users['password'] == self.password) {
-                    self.messageSuccess = "Congratulation! You logged in successful";
-                    console.log(loginService.getUser());
-                } else {
-                    self.messageError = "Username or password is invalid";
-                }
-                self.loginLoading = false;
+                loginService.getUser().then(function(response) {
+                    if (self.username == response.username && self.password == response.password) {
+                        // console.log("Congratulation! You logged in successful");
+                        $location.path('/home');
+                        $rootScope.Auth = true;
+                    } else {
+                        self.messageError = "Username or password is invalid";
+                    }
+                    self.loginLoading = false;
+                }, function(error) {
+                    console.log("Request API failed");
+                });
+            }
+        }
+
+        function displayPassword() {
+            if (self.typeInput == 'password') {
+                self.typeInput = 'text';
+                self.isPassword = false;
+            } else {
+                self.typeInput = 'password';
+                self.isPassword = true;
             }
         }
     }

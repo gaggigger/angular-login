@@ -21,6 +21,7 @@
   "homepage": "https://github.com/hahuutin/angular-login#readme",
   "dependencies": {
     "angular": "^1.5.5",
+    "angular-cookies": "^1.5.6",
     "angular-ladda": "^0.3.3",
     "angular-ui-router": "^0.3.0",
     "bootstrap": "^3.3.6",

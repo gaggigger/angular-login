@@ -1,4 +1,4 @@
-(function() {
+;(function() {
     /**
      * @name Setting Module
      * @desc This function using to setter module and dependency
@@ -10,14 +10,19 @@
     angular
         .module('login-app', [
             'angular-ladda',
-            'ui.router'
+            'ui.router',
+            'ngCookies'
         ])
-        .config(function (laddaProvider) {
+        .config(function(laddaProvider) {
             laddaProvider.setOption({
-                /* optional */
                 style: 'zoom-out',
                 spinnerSize: 35,
                 spinnerColor: '#ffffff'
             });
+        })
+        .run(function($rootScope, $cookies) {
+            $rootScope.Auth = false;
+            $rootScope.myCookie = $cookies.get('loginCookie');
+            // console.log($rootScope.myCookie);
         });
 })();
