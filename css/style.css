@@ -15,11 +15,6 @@ body, html {
     padding: 40px 40px;
 }
 
-.btn {
-    font-weight: 700;
-    height: 36px;
-}
-
 /*
  * Card component
  */
@@ -163,4 +158,40 @@ body, html {
 }
 .form-addon .addon:hover {
     cursor: pointer;
+}
+
+.or-box {
+    position: relative;
+    border-top: 1px solid #dfdfdf;
+    padding-top: 30px;
+    margin-top: 30px;
+}
+.or {
+    color: #666666;
+    background-color: #F7F7F7;
+    position: absolute;
+    text-align: center;
+    top: -11px;
+    width: 40px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.btn-facebook {
+    background-color: #3F639E;
+    color: #fff !important;
+    font-weight:bold;
+}
+.btn-google {
+    background-color: #d64937;;
+    color: #fff !important;
+    font-weight:bold;
+}
+.btn-twitter {
+    background-color: #55ACEE;
+    color: #fff !important;
+    font-weight:bold;
+}
+.btn-block+.btn-block {
+    margin-top: 10px;
 }

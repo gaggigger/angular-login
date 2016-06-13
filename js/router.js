@@ -22,8 +22,8 @@
                 controller: 'LoginController',
                 controllerAs: 'LoginCtrl',
                 resolve: {
-                    'abc': function($rootScope, $location) {
-                        if ($rootScope.Auth == true) {
+                    'checkAuthentication': function($rootScope, $location) {
+                        if ($rootScope.Auth == true && Object.keys($rootScope.loginCookie).length !== 0) {
                             $location.path('/home');
                         }
                     }
@@ -35,8 +35,8 @@
                 controller: 'HomeController',
                 controllerAs: 'HomeCtrl',
                 resolve: {
-                    'abc': function($rootScope, $location) {
-                        if ($rootScope.Auth == false) {
+                    'checkAuthentication': function($rootScope, $location) {
+                        if ($rootScope.Auth == false && Object.keys($rootScope.loginCookie).length === 0) {
                             $location.path('/login');
                         }
                     }

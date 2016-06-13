@@ -11,18 +11,25 @@
         .module('login-app', [
             'angular-ladda',
             'ui.router',
-            'ngCookies'
+            'ngCookies',
+            'satellizer'
         ])
-        .config(function(laddaProvider) {
+        .config(function(laddaProvider, $authProvider) {
             laddaProvider.setOption({
                 style: 'zoom-out',
                 spinnerSize: 35,
                 spinnerColor: '#ffffff'
             });
+
+            $authProvider.facebook({
+                clientId: '124937647928931',
+                name: 'login with facebook',
+                url: '/auth/facebook'
+            });
         })
         .run(function($rootScope, $cookies) {
             $rootScope.Auth = false;
-            $rootScope.myCookie = $cookies.get('loginCookie');
-            // console.log($rootScope.myCookie);
+            $rootScope.loginCookie = $cookies.getObject('loginCookie');
+
         });
 })();

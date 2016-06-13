@@ -11,12 +11,13 @@
         .module('login-app')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$http', '$location', 'loginService', '$rootScope'];
+    LoginController.$inject = ['$http', '$location', 'loginService', '$rootScope', '$cookies', '$auth'];
 
-    function LoginController($http, $location, loginService, $rootScope) {
+    function LoginController($http, $location, loginService, $rootScope, $cookies, $auth) {
         var self = this;
         self.checkLogin = checkLogin;
         self.displayPassword = displayPassword;
+        self.authenticate = authenticate;
         self.users = [];
         self.typeInput = 'password';
         self.isPassword = true;
@@ -27,9 +28,9 @@
             if (isValid) {
                 loginService.getUser().then(function(response) {
                     if (self.username == response.username && self.password == response.password) {
-                        // console.log("Congratulation! You logged in successful");
                         $location.path('/home');
                         $rootScope.Auth = true;
+                        $cookies.putObject('loginCookie', response);
                     } else {
                         self.messageError = "Username or password is invalid";
                     }
@@ -48,6 +49,10 @@
                 self.typeInput = 'password';
                 self.isPassword = true;
             }
+        }
+
+        function authenticate(provider) {
+            $auth.authenticate(provider);
         }
     }
 })();
