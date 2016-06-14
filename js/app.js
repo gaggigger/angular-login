@@ -12,23 +12,27 @@
             'angular-ladda',
             'ui.router',
             'ngCookies',
-            'satellizer'
+            'ezfb'
         ])
-        .config(function(laddaProvider, $authProvider, facebookAppID) {
+        .config(function(laddaProvider, /*$authProvider,*/ facebookAppID, ezfbProvider) {
             laddaProvider.setOption({
                 style: 'zoom-out',
                 spinnerSize: 35,
                 spinnerColor: '#ffffff'
             });
 
-            $authProvider.facebook({
-                clientId: 'facebookAppID',
-                display: 'popup',
-                popupOptions: { width: 481, height: 269 }
+            // $authProvider.facebook({
+            //     clientId: 'facebookAppID',
+            //     display: 'popup',
+            //     popupOptions: { width: 481, height: 269 }
+            // });
+            // $authProvider.withCredentials = false;
+            // $authProvider.loginRedirect = null;
+            // $authProvider.tokenName = 'entities';
+
+            ezfbProvider.setInitParams({
+                appId: facebookAppID
             });
-            $authProvider.withCredentials = false;
-            $authProvider.loginRedirect = null;
-            $authProvider.tokenName = 'entities';
         })
         .run(function($rootScope, $cookies) {
             $rootScope.Auth = false;

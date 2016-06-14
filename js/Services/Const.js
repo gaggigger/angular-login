@@ -3,6 +3,5 @@
 
 	angular
 		.module('login-app')
-		.constant("facebookAppID", '124937647928931')
-		;
+		.constant("facebookAppID", '124937647928931');
 })();
