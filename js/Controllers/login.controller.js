@@ -62,7 +62,7 @@
              * Calling FB.login with required permissions specified
              * https://developers.facebook.com/docs/reference/javascript/FB.login/v2.0
              */
-            ezfb.login(function (res) {
+            ezfb.login(function(res) {
               /**
                * no manual $scope.$apply, I got that handled
                */
